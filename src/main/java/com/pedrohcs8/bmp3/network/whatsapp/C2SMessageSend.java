@@ -1,7 +1,7 @@
-package com.pedrohcs8.bmp3.network;
+package com.pedrohcs8.bmp3.network.whatsapp;
 
+import com.pedrohcs8.bmp3.network.PacketHandler;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.event.network.CustomPayloadEvent;
 
@@ -28,6 +28,7 @@ public class C2SMessageSend {
 
     public void handle(CustomPayloadEvent.Context context) {
         ServerPlayer player = context.getSender().getServer().getPlayerList().getPlayerByName(this.playerName);
+        System.out.println(playerName);
         PacketHandler.sendToSpecificPlayer(new S2CMessageSend(this.message, this.playerName, this.author), player);
     }
 }

@@ -1,3 +1,9 @@
 {
-  "item.bmp3.celular": "Celular"
+  "item.bmp3.celular": "Celular",
+
+  "item.bmp3.addited_bloom": "Addited Bloom",
+  "item.bmp3.pure_bloom": "Pure Bloom",
+
+
+  "entity.bmp3.dirt_bike": "Moto de Trilha"
 }

@@ -2,12 +2,9 @@ package com.pedrohcs8.bmp3.items;
 
 
 import com.pedrohcs8.bmp3.ClientAccess;
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.MenuProvider;
-import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -26,13 +23,11 @@ public class CelularItem extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         if (pUsedHand == InteractionHand.MAIN_HAND) {
-            DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> ClientAccess::CelularItemScreenOpen);
+            DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> ClientAccess::CelularMainScreenOpen);
         }
 
         return super.use(pLevel, pPlayer, pUsedHand);
     }
-
-
 
     @Override
     public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {

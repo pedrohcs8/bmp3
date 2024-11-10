@@ -1,6 +1,7 @@
-package com.pedrohcs8.bmp3.network;
+package com.pedrohcs8.bmp3.network.whatsapp;
 
 import com.pedrohcs8.bmp3.Utils;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.event.network.CustomPayloadEvent;
 

@@ -16,13 +16,16 @@ public class CelularMainScreen extends Screen {
 
     private static final ResourceLocation bgTexture = ResourceLocation.fromNamespaceAndPath(Bmp3.MOD_ID, "textures/gui/celular_main_bg.png");
     private static final ResourceLocation returnButtonTexture = ResourceLocation.fromNamespaceAndPath(Bmp3.MOD_ID, "textures/gui/return_button.png");
+
     private static final ResourceLocation whatsAppButtonTexture = ResourceLocation.fromNamespaceAndPath(Bmp3.MOD_ID, "textures/gui/whatsapp/whatsapp_button.png");
+    private static final ResourceLocation bankButtonTexture = ResourceLocation.fromNamespaceAndPath(Bmp3.MOD_ID, "textures/gui/bank/bank_button.png");
 
     private final int imageWidth, imageHeight;
     private int leftPos, topPos;
 
     private Button whatsappButton;
     private Button returnButton;
+    private Button bankButton;
 
     public CelularMainScreen() {
         super(title);
@@ -49,9 +52,16 @@ public class CelularMainScreen extends Screen {
         this.topPos = (this.height - this.imageHeight) / 2;
 
         this.whatsappButton = this.addRenderableWidget(
-                Button.builder(Component.literal(""), this::handleButton)
+                Button.builder(Component.literal(""), this::handleWhatsAppButton)
                         .bounds(this.leftPos + 11, this.topPos + 12, 32, 32)
                         .tooltip(Tooltip.create(Component.literal("WhatsApp")))
+                        .build()
+        );
+
+        this.bankButton = this.addRenderableWidget(
+                Button.builder(Component.literal(""), this::handleBankButton)
+                        .bounds(this.leftPos + 53, this.topPos + 12, 32, 32)
+                        .tooltip(Tooltip.create(Component.literal("Banco")))
                         .build()
         );
 
@@ -67,8 +77,9 @@ public class CelularMainScreen extends Screen {
         pGuiGraphics.blit(bgTexture, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
         super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
         pGuiGraphics.blit(returnButtonTexture, this.leftPos + 63, this.topPos + 170, 0, 0, 12, 12);
-        pGuiGraphics.blit(whatsAppButtonTexture, this.leftPos + 11, this.topPos + 12, 0, 0, 32, 32);
 
+        pGuiGraphics.blit(whatsAppButtonTexture, this.leftPos + 11, this.topPos + 12, 0, 0, 32, 32);
+        pGuiGraphics.blit(bankButtonTexture, this.leftPos + 53, this.topPos + 12, 0, 0, 32, 32);
     }
 
     @Override
@@ -76,8 +87,12 @@ public class CelularMainScreen extends Screen {
 //        super.renderBackground(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
     }
 
-    private void handleButton(Button button) {
+    private void handleWhatsAppButton(Button button) {
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> ClientAccess::CelularWhatsappOpen);
+    }
+
+    private void handleBankButton(Button button) {
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> ClientAccess::CelularBankOpen);
     }
 
     private void handleReturnButton(Button button) {

@@ -122,7 +122,7 @@ public class CelularWhatsAppScreen extends Screen {
     }
 
     private void handleReturnButton(Button button) {
-        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> ClientAccess::CelularItemScreenOpen);
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> ClientAccess::CelularMainScreenOpen);
     }
 
     private void handleConfigButton(Button button) {

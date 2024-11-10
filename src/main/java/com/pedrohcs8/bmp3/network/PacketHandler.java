@@ -1,6 +1,12 @@
 package com.pedrohcs8.bmp3.network;
 
 import com.pedrohcs8.bmp3.Bmp3;
+import com.pedrohcs8.bmp3.network.bank.money.S2CAddMoney;
+import com.pedrohcs8.bmp3.network.bank.money.S2CRemoveMoney;
+import com.pedrohcs8.bmp3.network.bank.pay.C2SPay;
+import com.pedrohcs8.bmp3.network.bank.pay.S2CPay;
+import com.pedrohcs8.bmp3.network.whatsapp.C2SMessageSend;
+import com.pedrohcs8.bmp3.network.whatsapp.S2CMessageSend;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.ChannelBuilder;
@@ -17,6 +23,7 @@ public class PacketHandler {
                     .simpleChannel();
 
     public static void register() {
+        // Whatsapp Packets
         instance.messageBuilder(C2SMessageSend.class, NetworkDirection.PLAY_TO_SERVER)
                 .encoder(C2SMessageSend::encode)
                 .decoder(C2SMessageSend::new)
@@ -27,6 +34,32 @@ public class PacketHandler {
                 .encoder(S2CMessageSend::encode)
                 .decoder(S2CMessageSend::new)
                 .consumerMainThread(S2CMessageSend::handle)
+                .add();
+
+        // Bank Packets
+
+        instance.messageBuilder(C2SPay.class, NetworkDirection.PLAY_TO_SERVER)
+                .encoder(C2SPay::encode)
+                .decoder(C2SPay::new)
+                .consumerMainThread(C2SPay::handle)
+                .add();
+
+        instance.messageBuilder(S2CPay.class, NetworkDirection.PLAY_TO_CLIENT)
+                .encoder(S2CPay::encode)
+                .decoder(S2CPay::new)
+                .consumerMainThread(S2CPay::handle)
+                .add();
+
+        instance.messageBuilder(S2CAddMoney.class, NetworkDirection.PLAY_TO_CLIENT)
+                .encoder(S2CAddMoney::encode)
+                .decoder(S2CAddMoney::new)
+                .consumerMainThread(S2CAddMoney::handle)
+                .add();
+
+        instance.messageBuilder(S2CRemoveMoney.class, NetworkDirection.PLAY_TO_CLIENT)
+                .encoder(S2CRemoveMoney::encode)
+                .decoder(S2CRemoveMoney::new)
+                .consumerMainThread(S2CRemoveMoney::handle)
                 .add();
     }
 
