@@ -13,15 +13,15 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModItems {
     // Actually register the items
-    public static final DeferredRegister<Item> ITEMS =
+    public static final DeferredRegister<Item> items =
             DeferredRegister.create(ForgeRegistries.ITEMS, Bmp3.MOD_ID);
 
-    public static final RegistryObject<CelularItem> celular = ITEMS.register("celular", () -> new CelularItem(new Item.Properties()));
+    public static final RegistryObject<CelularItem> celular = items.register("celular", () -> new CelularItem(new Item.Properties()));
 
-    public static final RegistryObject<AdditedBloomItem> addited_bloom = ITEMS.register("addited_bloom", () -> new AdditedBloomItem(new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
-    public static final RegistryObject<PureBloomItem> pure_bloom = ITEMS.register("pure_bloom", () -> new PureBloomItem(new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
+    public static final RegistryObject<AdditedBloomItem> addited_bloom = items.register("addited_bloom", () -> new AdditedBloomItem(new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
+    public static final RegistryObject<PureBloomItem> pure_bloom = items.register("pure_bloom", () -> new PureBloomItem(new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 
     public static void register(IEventBus eventBus) {
-        ITEMS.register(eventBus);
+        items.register(eventBus);
     }
 }

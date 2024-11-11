@@ -3,6 +3,7 @@ package com.pedrohcs8.bmp3;
 import com.mojang.logging.LogUtils;
 import com.pedrohcs8.bmp3.events.ModEvents;
 import com.pedrohcs8.bmp3.init.EntityInit;
+import com.pedrohcs8.bmp3.init.ModBlocks;
 import com.pedrohcs8.bmp3.init.ModItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
@@ -27,7 +28,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 import org.apache.commons.io.filefilter.PathMatcherFileFilter;
 import org.slf4j.Logger;
-
 import java.nio.file.PathMatcher;
 import java.nio.file.Paths;
 import java.util.List;
@@ -49,6 +49,7 @@ public class Bmp3
         MinecraftForge.EVENT_BUS.register(this);
 
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
         EntityInit.entities.register(modEventBus);
 
         // Register the item to a creative tab
@@ -56,6 +57,8 @@ public class Bmp3
 
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+
+
     }
 
     // Add the example block item to the building blocks tab
@@ -63,6 +66,8 @@ public class Bmp3
     {
         if (event.getTabKey() == CreativeModeTabs.REDSTONE_BLOCKS) {
             event.accept(ModItems.celular);
+            event.accept(ModBlocks.saco_bloom_block);
+            event.accept(ModBlocks.saco_bloom_vazio_block);
         }
     }
 }

@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "bmp3:item/saco_bloom_vazio"
+  },
+  "render_type": "translucent"
+}

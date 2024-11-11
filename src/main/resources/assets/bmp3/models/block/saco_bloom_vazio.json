@@ -1,0 +1,9 @@
+{
+  "parent": "bmp3:custom/saco_bloom_vazio",
+  "textures": {
+    "all": "bmp3:block/saco_bloom",
+    "particle": "bmp3:block/saco_bloom",
+    "1": "bmp3:block/saco_bloom"
+  },
+  "render_type": "solid"
+}
