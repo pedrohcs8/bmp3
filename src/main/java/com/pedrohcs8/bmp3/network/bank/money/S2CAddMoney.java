@@ -21,8 +21,6 @@ public class S2CAddMoney {
     }
 
     public void handle(CustomPayloadEvent.Context context) {
-        System.out.println("penis");
-
         Minecraft.getInstance().player.getCapability(BankMoneyProvider.bank_money).ifPresent(money -> {
             money.addMoney(this.money);
         });

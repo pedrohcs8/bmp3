@@ -27,7 +27,6 @@ public class S2CMessageSend {
     }
 
     public void handle(CustomPayloadEvent.Context context) {
-        System.out.println("client");
         Utils.createMessageFile(author);
         Utils.writeToMsgFile(author, author, message);
     }

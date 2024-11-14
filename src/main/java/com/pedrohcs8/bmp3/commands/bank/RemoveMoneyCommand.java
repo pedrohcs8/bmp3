@@ -9,6 +9,7 @@ import com.pedrohcs8.bmp3.network.PacketHandler;
 import com.pedrohcs8.bmp3.network.bank.money.S2CRemoveMoney;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
+import net.minecraft.commands.arguments.item.ItemArgument;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
@@ -31,7 +32,7 @@ public class RemoveMoneyCommand {
             Player sender = (Player) command.getSource().getEntity();
             ServerPlayer target = command.getSource().getServer().getPlayerList().getPlayerByName(StringArgumentType.getString(command, "player"));
 
-            PacketHandler.sendToSpecificPlayer(new S2CRemoveMoney(IntegerArgumentType.getInteger(command, "money")), target);
+            PacketHandler.sendToSpecificPlayer(new S2CRemoveMoney(IntegerArgumentType.getInteger(command, "money"), ""), target);
             sender.sendSystemMessage(Component.literal("Sucesso!"));
         }
 

@@ -29,13 +29,15 @@ public class CelularWAChat extends Screen {
     private int leftPos, topPos;
     private String playerName;
 
+    private int messageSize = 0;
+    private int currentIndex = 0;
+
     private Button returnButton;
     private Button sendMessageButton;
     private EditBox messageBox;
 
     public CelularWAChat(String playerName) {
         super(title);
-
 
         this.imageWidth = 140;
         this.imageHeight = 186;
@@ -54,6 +56,10 @@ public class CelularWAChat extends Screen {
         if (level == null) {
             return;
         }
+
+        List<String> messages = Utils.readMessageFile(playerName);
+
+        this.messageSize = messages.size();
 
         this.leftPos = (this.width - this.imageWidth) / 2;
         this.topPos = (this.height - this.imageHeight) / 2;
@@ -82,11 +88,16 @@ public class CelularWAChat extends Screen {
         pGuiGraphics.drawString(this.minecraft.font, playerName, this.leftPos + 60, this.topPos + 10, 0xFFFFF);
 
         List<String> messages = Utils.readMessageFile(playerName);
+        this.messageSize = messages.size();
 
         int heightMessageOffset = 40;
 
-        for (int i = 0; i < messages.size(); i++) {
+        for (int i = currentIndex; i < messageSize; i++) {
             if (messages.get(i).isEmpty()) {
+                continue;
+            }
+
+            if (i > (5 + currentIndex)) {
                 continue;
             }
 
@@ -98,6 +109,29 @@ public class CelularWAChat extends Screen {
 
             heightMessageOffset = heightMessageOffset + 13;
         }
+    }
+
+    @Override
+    public boolean mouseScrolled(double pMouseX, double pMouseY, double pScrollX, double pScrollY) {
+        System.out.println(pScrollY);
+
+        switch ((int) pScrollY) {
+            case 1: {
+                if (currentIndex > 0) {
+                    currentIndex = currentIndex - 1;
+                }
+                break;
+            }
+
+            case -1: {
+                if (currentIndex < messageSize) {
+                    currentIndex = currentIndex + 1;
+                }
+                break;
+            }
+        }
+
+        return super.mouseScrolled(pMouseX, pMouseY, pScrollX, pScrollY);
     }
 
     @Override

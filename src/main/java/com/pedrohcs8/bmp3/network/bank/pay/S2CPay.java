@@ -22,7 +22,6 @@ public class S2CPay {
     }
 
     public void handle(CustomPayloadEvent.Context context) {
-        System.out.println("client");
         Minecraft.getInstance().player.getCapability(BankMoneyProvider.bank_money).ifPresent(money -> {
             money.addMoney(this.money);
         });

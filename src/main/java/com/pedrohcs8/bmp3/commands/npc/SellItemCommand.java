@@ -37,10 +37,10 @@ public class SellItemCommand {
             Player sender = (Player) command.getSource().getEntity();
             ServerPlayer target = command.getSource().getServer().getPlayerList().getPlayerByName(StringArgumentType.getString(command, "player"));
 
-            ItemStack items = new ItemStack(ItemArgument.getItem(command, "mercadoria").getItem(), 1);
-            target.addItem(items);
+//            ItemStack items = new ItemStack(ItemArgument.getItem(command, "mercadoria").getItem(), 1);
+//            target.addItem(items);
 
-            PacketHandler.sendToSpecificPlayer(new S2CRemoveMoney(IntegerArgumentType.getInteger(command, "money")), target);
+            PacketHandler.sendToSpecificPlayer(new S2CRemoveMoney(IntegerArgumentType.getInteger(command, "money"), ItemArgument.getItem(command, "mercadoria").getItem().toString()), target);
             sender.sendSystemMessage(Component.literal("Sucesso!"));
         }
 

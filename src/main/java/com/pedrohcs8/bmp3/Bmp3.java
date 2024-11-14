@@ -66,8 +66,11 @@ public class Bmp3
     {
         if (event.getTabKey() == CreativeModeTabs.REDSTONE_BLOCKS) {
             event.accept(ModItems.celular);
+            event.accept(ModItems.custom_key);
+
             event.accept(ModBlocks.saco_bloom_block);
             event.accept(ModBlocks.saco_bloom_vazio_block);
+            event.accept(ModBlocks.custom_door_block);
         }
     }
 }
