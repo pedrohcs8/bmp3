@@ -30,7 +30,6 @@ public class CelularMainScreen extends Screen {
     public CelularMainScreen() {
         super(title);
 
-
         this.imageWidth = 140;
         this.imageHeight = 186;
     }

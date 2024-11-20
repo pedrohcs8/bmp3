@@ -1,6 +1,6 @@
 {
   "item.bmp3.celular": "Celular",
-  "item.bmp3.custom_key": "Chave",
+  "item.bmp3.custom_key": "Chave Padrão",
 
   "item.bmp3.addited_bloom": "Addited Bloom",
   "item.bmp3.pure_bloom": "Pure Bloom",
@@ -8,5 +8,6 @@
   "block.bmp3.saco_bloom": "Saco de Bloom",
   "block.bmp3.saco_bloom_vazio": "Saco",
 
-  "entity.bmp3.dirt_bike": "Moto de Trilha"
+  "entity.bmp3.dirt_bike": "Moto de Trilha",
+  "entity.bmp3.mine_car": "Carro"
 }

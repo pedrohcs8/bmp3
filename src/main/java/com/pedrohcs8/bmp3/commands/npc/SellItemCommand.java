@@ -25,22 +25,21 @@ public class SellItemCommand {
                 })
                 .then(Commands.argument("money", IntegerArgumentType.integer()).then(
                         Commands.argument("player", StringArgumentType.string()).then(
-                                Commands.argument("mercadoria", ItemArgument.item(pContext))
+                                Commands.argument("mercadoria", ItemArgument.item(pContext)).then(
+                                        Commands.argument("qntd", IntegerArgumentType.integer())
                                         .executes((command) -> {
                                             return execute(command);
                                         })
-                        ))));
+                                )))));
     }
 
     private static int execute(CommandContext<CommandSourceStack> command) {
         if (command.getSource().getEntity() instanceof Player) {
             Player sender = (Player) command.getSource().getEntity();
             ServerPlayer target = command.getSource().getServer().getPlayerList().getPlayerByName(StringArgumentType.getString(command, "player"));
+            int qntd = IntegerArgumentType.getInteger(command, "qntd");
 
-//            ItemStack items = new ItemStack(ItemArgument.getItem(command, "mercadoria").getItem(), 1);
-//            target.addItem(items);
-
-            PacketHandler.sendToSpecificPlayer(new S2CRemoveMoney(IntegerArgumentType.getInteger(command, "money"), ItemArgument.getItem(command, "mercadoria").getItem().toString()), target);
+            PacketHandler.sendToSpecificPlayer(new S2CRemoveMoney(IntegerArgumentType.getInteger(command, "money") * qntd, ItemArgument.getItem(command, "mercadoria").getItem().toString(), qntd), target);
             sender.sendSystemMessage(Component.literal("Sucesso!"));
         }
 

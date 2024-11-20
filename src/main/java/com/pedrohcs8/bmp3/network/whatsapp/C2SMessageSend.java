@@ -28,7 +28,6 @@ public class C2SMessageSend {
 
     public void handle(CustomPayloadEvent.Context context) {
         ServerPlayer player = context.getSender().getServer().getPlayerList().getPlayerByName(this.playerName);
-        System.out.println(playerName);
         PacketHandler.sendToSpecificPlayer(new S2CMessageSend(this.message, this.playerName, this.author), player);
     }
 }

@@ -56,7 +56,6 @@ public class CelularBankScreen extends Screen {
         this.topPos = (this.height - this.imageHeight) / 2;
 
         this.minecraft.player.getCapability(BankMoneyProvider.bank_money).ifPresent(money -> {
-            System.out.println(money.getMoney());
             this.playerMoney = money.getMoney();
         });
 

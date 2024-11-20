@@ -32,7 +32,7 @@ public class RemoveMoneyCommand {
             Player sender = (Player) command.getSource().getEntity();
             ServerPlayer target = command.getSource().getServer().getPlayerList().getPlayerByName(StringArgumentType.getString(command, "player"));
 
-            PacketHandler.sendToSpecificPlayer(new S2CRemoveMoney(IntegerArgumentType.getInteger(command, "money"), ""), target);
+            PacketHandler.sendToSpecificPlayer(new S2CRemoveMoney(IntegerArgumentType.getInteger(command, "money"), "", 0), target);
             sender.sendSystemMessage(Component.literal("Sucesso!"));
         }
 

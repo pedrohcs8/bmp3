@@ -32,7 +32,6 @@ public class CelularBankPay extends Screen {
 
     public CelularBankPay() {
         super(title);
-        // TODO: HANDLE 0 MONEY
 
         this.imageWidth = 140;
         this.imageHeight = 186;

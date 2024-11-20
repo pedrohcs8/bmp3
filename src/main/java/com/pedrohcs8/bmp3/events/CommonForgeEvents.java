@@ -1,6 +1,7 @@
 package com.pedrohcs8.bmp3.events;
 
 import com.pedrohcs8.bmp3.Bmp3;
+import com.pedrohcs8.bmp3.commands.OpenDealershipCommand;
 import com.pedrohcs8.bmp3.commands.bank.AddMoneyCommand;
 import com.pedrohcs8.bmp3.commands.bank.RemoveMoneyCommand;
 import com.pedrohcs8.bmp3.commands.npc.BuyItemCommand;
@@ -19,6 +20,7 @@ public class CommonForgeEvents {
         RemoveMoneyCommand.register(event.getDispatcher());
         BuyItemCommand.register(event.getDispatcher(), event.getBuildContext());
         SellItemCommand.register(event.getDispatcher(), event.getBuildContext());
+        OpenDealershipCommand.register(event.getDispatcher());
     }
 
     // TODO: WRONG BUS

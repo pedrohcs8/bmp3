@@ -7,6 +7,7 @@ import com.pedrohcs8.bmp3.screens.celular.whatsapp.CelularWAAddPlayer;
 import com.pedrohcs8.bmp3.screens.celular.whatsapp.CelularWAChat;
 import com.pedrohcs8.bmp3.screens.celular.whatsapp.CelularWAConfigScreen;
 import com.pedrohcs8.bmp3.screens.celular.whatsapp.CelularWhatsAppScreen;
+import com.pedrohcs8.bmp3.screens.concessionaria.DealerMainWindow;
 import net.minecraft.client.Minecraft;
 
 public class ClientAccess {
@@ -40,5 +41,11 @@ public class ClientAccess {
 
     public static void CelularPayOpen() {
         Minecraft.getInstance().setScreen(new CelularBankPay());
+    }
+
+    // Dealership
+
+    public static void DealershipOpen() {
+        Minecraft.getInstance().setScreen(new DealerMainWindow());
     }
 }

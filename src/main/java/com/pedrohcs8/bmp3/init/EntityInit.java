@@ -2,6 +2,7 @@ package com.pedrohcs8.bmp3.init;
 
 import com.pedrohcs8.bmp3.Bmp3;
 import com.pedrohcs8.bmp3.entities.DirtBikeEntity;
+import com.pedrohcs8.bmp3.entities.MineCarEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -15,5 +16,10 @@ public class EntityInit {
     public static final RegistryObject<EntityType<DirtBikeEntity>> dirt_bike_entity = entities.register("dirt_bike", () -> EntityType.Builder.<DirtBikeEntity>of(DirtBikeEntity::new, MobCategory.CREATURE)
             .sized(1.0f, 1.0f)
             .build(ResourceLocation.fromNamespaceAndPath(Bmp3.MOD_ID, "dirt_bike").toString())
+    );
+
+    public static final RegistryObject<EntityType<MineCarEntity>> mine_car_entity = entities.register("mine_car", () -> EntityType.Builder.<MineCarEntity>of(MineCarEntity::new, MobCategory.CREATURE)
+            .sized(1.0f, 1.0f)
+            .build(ResourceLocation.fromNamespaceAndPath(Bmp3.MOD_ID, "mine_car").toString())
     );
 }

@@ -23,7 +23,8 @@ public class CelularItem extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         if (pUsedHand == InteractionHand.MAIN_HAND) {
-            DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> ClientAccess::CelularMainScreenOpen);
+//            DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> ClientAccess::CelularMainScreenOpen);
+            DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> ClientAccess::DealershipOpen);
         }
 
         return super.use(pLevel, pPlayer, pUsedHand);

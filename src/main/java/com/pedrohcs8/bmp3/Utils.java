@@ -75,7 +75,6 @@ public class Utils {
     }
 
     public static List<String> readMessageFile(String playerName) {
-        //TODO: FINISH THIS
         if (Files.notExists(Paths.get(System.getProperty("user.dir") + "/bmp3/messages/" + playerName + ".txt"))) {
             return new ArrayList<>();
         }

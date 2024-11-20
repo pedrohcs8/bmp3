@@ -1,10 +1,12 @@
 package com.pedrohcs8.bmp3.network;
 
 import com.pedrohcs8.bmp3.Bmp3;
+import com.pedrohcs8.bmp3.network.bank.money.C2SRemoveMoney;
 import com.pedrohcs8.bmp3.network.bank.money.S2CAddMoney;
 import com.pedrohcs8.bmp3.network.bank.money.S2CRemoveMoney;
 import com.pedrohcs8.bmp3.network.bank.pay.C2SPay;
 import com.pedrohcs8.bmp3.network.bank.pay.S2CPay;
+import com.pedrohcs8.bmp3.network.dealer.C2SSpawnVehicle;
 import com.pedrohcs8.bmp3.network.whatsapp.C2SMessageSend;
 import com.pedrohcs8.bmp3.network.whatsapp.S2CMessageSend;
 import net.minecraft.resources.ResourceLocation;
@@ -56,10 +58,24 @@ public class PacketHandler {
                 .consumerMainThread(S2CAddMoney::handle)
                 .add();
 
+        instance.messageBuilder(C2SRemoveMoney.class, NetworkDirection.PLAY_TO_SERVER)
+                .encoder(C2SRemoveMoney::encode)
+                .decoder(C2SRemoveMoney::new)
+                .consumerMainThread(C2SRemoveMoney::handle)
+                .add();
+
         instance.messageBuilder(S2CRemoveMoney.class, NetworkDirection.PLAY_TO_CLIENT)
                 .encoder(S2CRemoveMoney::encode)
                 .decoder(S2CRemoveMoney::new)
                 .consumerMainThread(S2CRemoveMoney::handle)
+                .add();
+
+        // Dealer Packets
+
+        instance.messageBuilder(C2SSpawnVehicle.class, NetworkDirection.PLAY_TO_SERVER)
+                .encoder(C2SSpawnVehicle::encode)
+                .decoder(C2SSpawnVehicle::new)
+                .consumerMainThread(C2SSpawnVehicle::handle)
                 .add();
     }
 

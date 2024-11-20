@@ -26,11 +26,16 @@ public class CustomDoorBlock extends DoorBlock {
     @Override
     protected InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, BlockHitResult pHitResult) {
         if (pPlayer.getItemInHand(InteractionHand.MAIN_HAND).getItem().equals(ModItems.custom_key.get())) {
+            CustomKeyItem item = (CustomKeyItem) pPlayer.getItemInHand(InteractionHand.MAIN_HAND).getItem();
+
+            if (item.getTooltip().startsWith("Chave de")) {
+                return InteractionResult.SUCCESS;
+            }
+
             if (playerName == "") {
                 playerName = pPlayer.getName().toString();
             }
 
-            CustomKeyItem item = (CustomKeyItem) pPlayer.getItemInHand(InteractionHand.MAIN_HAND).getItem();
             item.setFoil(true);
             item.setTooltip("Chave de " + playerName);
 

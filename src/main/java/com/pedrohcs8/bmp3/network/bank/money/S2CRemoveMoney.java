@@ -16,19 +16,22 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class S2CRemoveMoney {
     private final int money;
     private final String itemName;
+    private final int qntd;
 
-    public S2CRemoveMoney(int money, String itemName) {
+    public S2CRemoveMoney(int money, String itemName, int qntd) {
         this.money = money;
         this.itemName = itemName;
+        this.qntd = qntd;
     }
 
     public S2CRemoveMoney(FriendlyByteBuf buffer) {
-        this(buffer.readInt(), buffer.readUtf());
+        this(buffer.readInt(), buffer.readUtf(), buffer.readInt());
     }
 
     public void encode(FriendlyByteBuf buffer) {
         buffer.writeInt(this.money);
         buffer.writeUtf(this.itemName);
+        buffer.writeInt(this.qntd);
     }
 
     public void handle(CustomPayloadEvent.Context context) {
@@ -43,7 +46,7 @@ public class S2CRemoveMoney {
                 String path = this.itemName.split(":")[1];
                 Item addItem = ForgeRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath(namespace, path));
 
-                Minecraft.getInstance().player.getInventory().add(new ItemStack(addItem, 1));
+                Minecraft.getInstance().player.getInventory().add(new ItemStack(addItem, qntd));
             }
 
             money.removeMoney(this.money);

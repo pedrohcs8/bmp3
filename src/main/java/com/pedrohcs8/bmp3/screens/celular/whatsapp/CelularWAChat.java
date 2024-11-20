@@ -83,9 +83,12 @@ public class CelularWAChat extends Screen {
 
         super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
 
+        // ImageWidth / 2 - PlayerLength / 2 - Offset
+        int playerTitleOffset = (imageWidth / 2) - (playerName.length() * 3);
+
         pGuiGraphics.blit(returnButtonTexture, this.leftPos + 64, this.topPos + 170, 0, 0, 12, 12);
         pGuiGraphics.blit(sendMessageButtonTexture, this.leftPos + 120, this.topPos + 152, 0, 0, 12, 12);
-        pGuiGraphics.drawString(this.minecraft.font, playerName, this.leftPos + 60, this.topPos + 10, 0xFFFFF);
+        pGuiGraphics.drawString(this.minecraft.font, playerName, this.leftPos + playerTitleOffset, this.topPos + 10, 0xFFFFF);
 
         List<String> messages = Utils.readMessageFile(playerName);
         this.messageSize = messages.size();
@@ -104,8 +107,11 @@ public class CelularWAChat extends Screen {
             String message = messages.get(i).split(",")[0];
             String author = messages.get(i).split(",")[1];
 
-            pGuiGraphics.drawString(this.minecraft.font, author, this.leftPos + 20, this.topPos + heightMessageOffset, 0xFFFFF);
-            pGuiGraphics.drawString(this.minecraft.font, message, this.leftPos + 60, this.topPos + heightMessageOffset, 0xFFFFF);
+            // (Author length * X) + offset
+            int authorOffset = (author.length() * 6) + 25;
+
+            pGuiGraphics.drawString(this.minecraft.font, author + ":", this.leftPos + 20, this.topPos + heightMessageOffset, 0xFFFFF);
+            pGuiGraphics.drawString(this.minecraft.font, message, this.leftPos + authorOffset, this.topPos + heightMessageOffset, 0xFFFFF);
 
             heightMessageOffset = heightMessageOffset + 13;
         }
@@ -113,8 +119,6 @@ public class CelularWAChat extends Screen {
 
     @Override
     public boolean mouseScrolled(double pMouseX, double pMouseY, double pScrollX, double pScrollY) {
-        System.out.println(pScrollY);
-
         switch ((int) pScrollY) {
             case 1: {
                 if (currentIndex > 0) {

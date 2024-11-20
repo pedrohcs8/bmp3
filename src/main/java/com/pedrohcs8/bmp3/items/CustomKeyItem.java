@@ -19,6 +19,10 @@ public class CustomKeyItem extends Item {
         this.tooltip = tooltip;
     }
 
+    public String getTooltip() {
+        return this.tooltip;
+    }
+
     public void setFoil(boolean isFoil) {
         this.foil = isFoil;
     }
